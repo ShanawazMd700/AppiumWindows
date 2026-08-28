@@ -1,0 +1,260 @@
+WinAppBDD - Setup From Scratch
+================================
+
+Project summary
+---------------
+WinAppBDD is a .NET BDD test automation project for Windows desktop apps.
+It uses Reqnroll with NUnit for BDD/test execution, Appium/Selenium for
+Windows UI automation, and WinAppDriver-compatible sessions at:
+
+  http://127.0.0.1:4723
+
+The project target framework is:
+
+  net9.0
+
+
+1. Install required system tools
+--------------------------------
+Install these before restoring or running the repo.
+
+1. Windows 10/11 x64
+   Current machine used for this document:
+   - OS version: Windows 10.0.26100
+   - Runtime identifier: win-x64
+
+2. .NET SDK
+   Current machine has:
+   - .NET SDK: 10.0.300
+   - MSBuild: 18.6.3
+   - .NET host: 10.0.9
+
+   The project targets net9.0.
+   Recommended setup:
+   - .NET SDK 9.x
+   - .NET runtime Microsoft.NETCore.App 9.0.16 or compatible 9.x runtime
+
+   Note: this machine currently has only .NET SDK 10.0.300 installed. Restore
+   works, but build fails during Reqnroll feature code-behind generation with
+   MSB4216/MSB4027 under this SDK. For a fresh working setup, install a .NET 9
+   SDK and use it to build this project. If multiple SDKs are installed, add a
+   global.json file or run from an environment that selects the .NET 9 SDK.
+
+   Current installed runtimes on this machine:
+   - Microsoft.AspNetCore.App 9.0.16
+   - Microsoft.AspNetCore.App 10.0.8
+   - Microsoft.NETCore.App 8.0.28
+   - Microsoft.NETCore.App 9.0.16
+   - Microsoft.NETCore.App 10.0.8
+   - Microsoft.NETCore.App 10.0.9
+   - Microsoft.WindowsDesktop.App 8.0.28
+   - Microsoft.WindowsDesktop.App 9.0.16
+   - Microsoft.WindowsDesktop.App 10.0.8
+   - Microsoft.WindowsDesktop.App 10.0.9
+
+3. Git
+   Required to clone the repository from source control.
+   Note: git was not available in PATH on the machine where this document was
+   generated, so no local Git version could be detected.
+
+4. WinAppDriver / Windows desktop automation driver
+   Required because the tests create a WindowsDriver session against:
+
+     http://127.0.0.1:4723
+
+   Install Microsoft WinAppDriver or the compatible driver used by the team.
+   Start it before running tests. It must listen on port 4723.
+
+5. Windows desktop applications under test
+   The current code launches applications from these paths:
+
+   - SmartFit:
+     C:\Program Files (x86)\ReSound\SmartFit\SmartFit.exe
+
+   - Noah 4:
+     C:\Program Files (x86)\HIMSA\Noah 4\Noah4.exe
+
+   - FDTS / Camelot:
+     C:\Program Files (x86)\GN Hearing\Camelot\WorkflowRuntime\Camelot.WorkflowRuntime.exe
+
+   Solus Max is currently not configured in code.
+
+
+2. Clone the repository
+-----------------------
+From a parent folder such as Desktop:
+
+  git clone <repository-url> WinAppBDD
+  cd WinAppBDD
+
+If the repository root contains only the project folder, enter the folder that
+contains WinAppBDD.csproj before running dotnet commands.
+
+
+3. Restore NuGet packages
+-------------------------
+Run:
+
+  dotnet restore WinAppBDD.csproj
+
+This restores the packages listed in WinAppBDD.csproj and generates the obj
+assets files used by build/test.
+
+
+4. Build the project
+--------------------
+Run:
+
+  dotnet build WinAppBDD.csproj
+
+For Release:
+
+  dotnet build WinAppBDD.csproj -c Release
+
+
+5. Start WinAppDriver
+---------------------
+Before running tests, start the Windows automation driver so it listens at:
+
+  http://127.0.0.1:4723
+
+The code creates the driver with these options:
+
+  PlatformName = Windows 11
+  AutomationName = Windows
+  DeviceName = WindowsPC
+  App = Root
+
+Because App is set to Root, the test session attaches to the Windows desktop
+root and then launches/controls applications separately.
+
+
+6. Run tests
+------------
+Run all tests:
+
+  dotnet test WinAppBDD.csproj
+
+Run with normal console logging:
+
+  dotnet test WinAppBDD.csproj --logger "console;verbosity=normal"
+
+The feature file currently includes scenarios for:
+
+  - Launching SmartFit
+  - Launching FDTS
+  - Launching Noah
+  - Changing target rule in SmartFit/fitting options flow
+
+
+7. Direct NuGet dependencies
+----------------------------
+These are the explicit PackageReference entries in WinAppBDD.csproj:
+
+  Appium.WebDriver                  5.1.0
+  ExtentReports                     4.1.0
+  FluentAssertions                  6.2.0
+  Microsoft.NET.Test.Sdk            17.14.1
+  Reqnroll.NUnit                    3.2.0
+  NUnit                             4.4.0
+  NUnit3TestAdapter                 5.1.0
+  Selenium.Support                  4.34.0
+  Selenium.WebDriver                4.34.0
+
+
+8. Restored transitive dependency snapshot
+------------------------------------------
+This snapshot was read from obj\project.assets.json after restore/build on the
+current machine. Versions may change only if the direct package versions or
+NuGet resolution rules change.
+
+  Cucumber.CucumberExpressions      17.1.0
+  Cucumber.HtmlFormatter            21.15.1
+  Cucumber.Messages                 29.0.1
+  DnsClient                         1.2.0
+  Gherkin                           35.0.0
+  Microsoft.ApplicationInsights     2.23.0
+  Microsoft.Bcl.AsyncInterfaces     9.0.6
+  Microsoft.CodeCoverage            17.14.1
+  Microsoft.DependencyModel         via Microsoft.Extensions.DependencyModel 8.0.2
+  Microsoft.Testing.Platform        1.7.3
+  Microsoft.Testing.Platform.MSBuild 1.7.3
+  Microsoft.TestPlatform.ObjectModel 17.14.1
+  Microsoft.TestPlatform.TestHost   17.14.1
+  MongoDB.Bson                      2.10.0
+  MongoDB.Driver                    2.10.0
+  MongoDB.Driver.Core               2.10.0
+  MongoDB.Libmongocrypt             1.0.0
+  Newtonsoft.Json                   13.0.3
+  RazorEngine.NetCore               2.2.6
+  Reqnroll                          3.2.0
+  Reqnroll.Tools.MsBuild.Generation 3.2.0
+  SharpCompress                     0.23.0
+  System.Collections.Immutable      8.0.0
+  System.Drawing.Common             8.0.7
+  System.Reflection.Metadata        8.0.0
+  System.Text.Json                  8.0.5
+  System.Threading.Channels         9.0.6
+
+The restored assets also include many Microsoft.AspNetCore.*, Microsoft.Extensions.*,
+System.*, and runtime.* support packages used transitively by the test and report
+packages. To see the complete resolved list on any machine, run:
+
+  dotnet list WinAppBDD.csproj package --include-transitive
+
+
+9. Repository structure
+-----------------------
+Important folders:
+
+  AppsManager       App launch and application lifecycle helpers
+  Drivers           WinAppDriver/Appium driver and session management
+  Features          Reqnroll .feature files and generated feature code
+  Hooks             Reqnroll before/after scenario hooks
+  Pages             Page/action classes for UI interactions
+  StepDefinitions   Reqnroll step bindings
+  Utilities         Wait and control helper utilities
+
+
+10. Fresh setup checklist
+-------------------------
+Use this checklist when preparing a new machine.
+
+  [ ] Install Git.
+  [ ] Install .NET SDK compatible with net9.0.
+  [ ] Install/start WinAppDriver or the team's compatible Windows automation driver.
+  [ ] Confirm port 4723 is available and the driver is listening.
+  [ ] Install SmartFit at the expected path, or update AppsManager\AppLaunch.cs.
+  [ ] Install Noah 4 at the expected path, or update AppsManager\AppLaunch.cs.
+  [ ] Install Camelot/FDTS at the expected path, or update AppsManager\AppLaunch.cs.
+  [ ] Clone the repository.
+  [ ] Run dotnet restore WinAppBDD.csproj.
+  [ ] Run dotnet build WinAppBDD.csproj.
+  [ ] Run dotnet test WinAppBDD.csproj with WinAppDriver running.
+
+
+11. Common troubleshooting
+--------------------------
+Driver connection fails:
+  Confirm WinAppDriver is running at http://127.0.0.1:4723.
+
+Application launch fails:
+  Confirm the application exe exists at the hard-coded path in
+  AppsManager\AppLaunch.cs.
+
+Tests cannot find UI elements:
+  Confirm the target application version matches the automation IDs used in
+  Pages and AppsManager\AppWaitLaunch.cs.
+
+Restore/build fails:
+  Confirm the .NET SDK is installed and available in PATH:
+
+    dotnet --info
+
+  If the build fails in Reqnroll.Tools.MsBuild.Generation with MSB4216 or
+  MSB4027 while using .NET SDK 10.x, install/select a .NET 9 SDK. This project
+  targets net9.0 and Reqnroll 3.2.0 feature generation was observed to fail on
+  this machine with SDK 10.0.300.
+
+Feature binding issues:
+  Rebuild the project so Reqnroll regenerates feature artifacts.

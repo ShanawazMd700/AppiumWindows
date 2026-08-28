@@ -1,0 +1,18 @@
+.vs/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+
+# Test results
+TestResults/
+*.trx
+
+# Rider
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db.vs/

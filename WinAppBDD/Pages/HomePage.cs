@@ -7,10 +7,7 @@ namespace WinAppBDD.Pages
     public class HomePage : ControlHelpers
     {
         private readonly By PatientDatabaseButton =
-            MobileBy.AccessibilityId("fittingpath-button-patient-database");
-
-
-
+            MobileBy.AccessibilityId("fittingpath_button_patient-database"); // AutomationId	fittingpath_button_patient-database
         private readonly By addpatientbutton =
     MobileBy.XPath("//Button[contains(@Name,'Add Patient')]");
 

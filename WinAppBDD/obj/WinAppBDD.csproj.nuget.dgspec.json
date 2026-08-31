@@ -52,13 +52,21 @@
           "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
+            "Allure.Net.Commons": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "Allure.Reqnroll": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
             "Appium.WebDriver": {
               "target": "Package",
               "version": "[5.1.0, )"
             },
             "ExtentReports": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[5.0.4, )"
             },
             "FluentAssertions": {
               "target": "Package",

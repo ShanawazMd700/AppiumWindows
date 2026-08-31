@@ -32,6 +32,9 @@ namespace WinAppBDD.Pages
         private readonly By audiogramwindowclose = MobileBy.Name("Close");
         private readonly By firstAudiogramCell = MobileBy.Name(
             "Item: Himsa.Noah.CommonControls.TestValuesViewModel, Column Display Index: 0");
+
+        private readonly By audiogramCopyButton = MobileBy.XPath("//Button[@HelpText='Copy to opposite ear']");
+
         private readonly By firstAudiogramEditor = MobileBy.XPath(
             "//Custom[@Name='Item: Himsa.Noah.CommonControls.TestValuesViewModel, Column Display Index: 0']//Edit");
 
@@ -81,6 +84,7 @@ namespace WinAppBDD.Pages
             Click(openoption);
             Click(audiogrammodule);
             EnterAudiogramValues("30", 10);
+            Click(audiogramCopyButton);
             Click(audiogramwindowclose);
             Click(addpatientokbutton);
         }
@@ -135,35 +139,6 @@ namespace WinAppBDD.Pages
         }
 
    
-        // Capture current Appium UI hierarchy
-        public void CaptureAppiumXml(string fileName = "AppiumSource.xml")
-        {
-            try
-            {
-                string xml = Driver.PageSource;
-
-                string folderPath = @"C:\Resources\AppiumXml";
-
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                string filePath = Path.Combine(folderPath, fileName);
-
-                File.WriteAllText(filePath, xml);
-
-                Console.WriteLine(
-                    $"Appium XML captured successfully: {filePath}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(
-                    $"Failed to capture Appium XML: {ex.Message}");
-            }
-
-
-        }
 
         public void launchFSW(string brand)
         {

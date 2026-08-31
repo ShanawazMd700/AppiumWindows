@@ -1,5 +1,7 @@
 using Reqnroll;
 using WinAppBDD.AppsLaunch;
+using WinAppBDD.AppsManager;
+using WinAppBDD.Drivers;
 using WinAppBDD.Pages;
 
 namespace WinAppBDD.StepDefinitions
@@ -12,6 +14,7 @@ namespace WinAppBDD.StepDefinitions
         private readonly NOAHActions noahActions;
         private readonly FittingOptionsWindow fittingoptions;
         private readonly BurnHI burnhi;
+        private readonly KillOpenApplications killOpenApplications;
         public DemoSteps() 
         {
             _homePage = new HomePage();
@@ -19,6 +22,7 @@ namespace WinAppBDD.StepDefinitions
             noahActions = new NOAHActions();
             fittingoptions = new FittingOptionsWindow();
             burnhi = new BurnHI();
+            killOpenApplications = new KillOpenApplications();
         }
 
 
@@ -26,6 +30,7 @@ namespace WinAppBDD.StepDefinitions
         public void WhenAddOrSelectPatientsIsClicked()
         {
             _homePage.ClickPatientDatabase();
+            //_homePage.ClickAddPatient();
         }
 
         //[Given("Launch FDTS in system")]
@@ -76,6 +81,14 @@ namespace WinAppBDD.StepDefinitions
         {
             
         }
+
+        [When("I Kill all the existing programs")]
+        public void WhenIKillAllTheExistingPrograms()
+        {
+            //KillOpenApplications.KillAllApplications();
+            SessionManager.KillExistingApps();
+        }
+
 
 
     }

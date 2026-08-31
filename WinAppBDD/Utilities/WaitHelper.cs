@@ -20,5 +20,34 @@ namespace WinAppBDD.Utilities
             wait.Until(
                 drv => drv.FindElement(locator).Displayed);
         }
+
+        public static void WaitForElementEnabled(
+            By locator,
+            int timeout = 80)
+        {
+            var wait = new WebDriverWait(
+                DriverManager.Driver ?? throw new InvalidOperationException(
+                    "Windows application session has not been started."),
+                TimeSpan.FromSeconds(timeout));
+
+            wait.Until(
+                drv =>
+                {
+                    try
+                    {
+                        var element = drv.FindElement(locator);
+
+                        return element.Displayed && element.Enabled;
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        return false;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        return false;
+                    }
+                });
+        }
     }
 }

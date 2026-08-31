@@ -1,7 +1,0 @@
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.csproj.AssemblyReference.cache
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.gentestingplatformentrypointinputcache.cache
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.genautoregisteredextensionsinputcache.cache
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.AssemblyInfoInputs.cache
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.AssemblyInfo.cs
-C:\Users\xxphapen\source\repos\WinAppBDD\WinAppBDD\obj\Debug\net10.0\WinAppBDD.csproj.CoreCompileInputs.cache

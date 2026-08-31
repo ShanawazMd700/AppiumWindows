@@ -4,32 +4,33 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace WinAppBDD.AppsManager
 {
-    internal class KillOpenApplications
+    public class KillOpenApplications
     {
-        public static void KillApplications()
+        public static void KillAllApplications()
         {
             string[] processNames =
             {
-            "ReSound Smart Fit",
-            "Socket_Box1",
-            "Medusa",
-            "AlgoLabtest.Dooku",
-            "SmartFitSA",
-            "SolusMax",
-            "Sentinel",
-            "Athena",
-            "Camelot.TestRuntimePC",
-            "Camelot.SystemInfobar",
-            "Camelot.WorkflowRuntime",
-            "IntertonFitting",
-            "BAXFitting",
-            "HearingAU",
-            "SmartFit",
-            "Noah4"
-        };
+                "ReSound Smart Fit",
+                "Socket_Box1",
+                "Medusa",
+                "AlgoLabtest.Dooku",
+                "SmartFitSA",
+                "SolusMax",
+                "Sentinel",
+                "Athena",
+                "Camelot.TestRuntimePC",
+                "Camelot.SystemInfobar",
+                "Camelot.WorkflowRuntime",
+                "IntertonFitting",
+                "BAXFitting",
+                "HearingAU",
+                "SmartFit",
+                "Noah4"
+            };
 
             foreach (var processName in processNames)
             {
@@ -45,12 +46,14 @@ namespace WinAppBDD.AppsManager
                 {
                     process.Kill();
                     process.WaitForExit();
+                    Thread.Sleep(4000);
                 }
                 catch
                 {
-                    // Add other handling logic if needed, such as logging the error or retrying.
+                    // Add logging if required
                 }
             }
+            //add Delay
         }
     }
 }

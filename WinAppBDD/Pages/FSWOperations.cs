@@ -19,7 +19,7 @@ namespace WinAppBDD.Pages
             MobileBy.AccessibilityId("fittingpath_link_simulate");
 
         private readonly By simulatebutton2 = MobileBy.Name("Simulate");
-        private readonly By continuebutton = MobileBy.Name("Continue");
+        
         // Product
         private By GetResoundItem(string productName) =>
             MobileBy.XPath(
@@ -27,7 +27,7 @@ namespace WinAppBDD.Pages
                 $"//Text[contains(@Name, 'ReSound {productName}')]"
             );
         private By SideMenuItems(string itemName) =>
-            MobileBy.XPath($"//Button[contains(@Name, '{itemName}')]");
+            MobileBy.Name(itemName);
 
         // Device + Direction
         private By SelectDirectionOfProduct(
@@ -91,10 +91,6 @@ namespace WinAppBDD.Pages
             Click(simulatebutton2);
         }
 
-        public void clickcontinue()
-        {
-            Click(continuebutton);
-        }
 
         public void ClickSideMenuItem(string itemName)
         {

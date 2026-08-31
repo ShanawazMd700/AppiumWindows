@@ -21,7 +21,7 @@ namespace WinAppBDD.Drivers
 
         public static void KillExistingApps()
         {
-            KillOpenApplications.KillApplications();
+            KillOpenApplications.KillAllApplications();
         }
     }
 }

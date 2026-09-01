@@ -23,7 +23,9 @@ namespace WinAppBDD.Hooks
         public static void BeforeTestRun()
         {
             // Create timestamped report directories
+
             ReportRunManager.Initialize();
+
 
             // Make sure Allure results directory exists
             Directory.CreateDirectory(
@@ -396,14 +398,17 @@ namespace WinAppBDD.Hooks
 
         private static void OpenAllureReport()
         {
+            string allureResults =
+                ReportRunManager.AllureResultsDirectory;
+
             string allureReport =
                 ReportRunManager.AllureDirectory;
 
-            if (!Directory.Exists(allureReport))
+            if (!Directory.Exists(allureResults))
             {
                 Console.WriteLine();
                 Console.WriteLine(
-                    "Allure report directory was not found.");
+                    "Allure results directory was not found.");
 
                 return;
             }
@@ -413,21 +418,12 @@ namespace WinAppBDD.Hooks
                     allureReport,
                     "index.html");
 
-            if (!File.Exists(indexPath))
-            {
-                Console.WriteLine();
-                Console.WriteLine(
-                    "Allure index.html was not found.");
-
-                return;
-            }
-
             Console.WriteLine();
             Console.WriteLine(
                 "Opening Allure report using local server...");
 
             Console.WriteLine(
-                allureReport);
+                allureResults);
 
             try
             {
@@ -436,7 +432,9 @@ namespace WinAppBDD.Hooks
                     {
                         FileName = AllureCommand,
 
-                        Arguments = $"serve \"{allureReport}\"",
+                        // allure serve requires the RAW RESULTS directory,
+                        // not the generated HTML report directory.
+                        Arguments = $"serve \"{allureResults}\"",
 
                         UseShellExecute = true,
 

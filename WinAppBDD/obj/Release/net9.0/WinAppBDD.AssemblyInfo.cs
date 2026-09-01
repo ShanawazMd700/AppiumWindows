@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinAppBDD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30c68c8bfdd0c0e487dd0b8dfd8f1d7fd779e5f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91456777ce7efd2d75bc290cf3ef27a86f8d4833")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinAppBDD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinAppBDD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

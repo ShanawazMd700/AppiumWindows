@@ -1,1 +1,12 @@
 .vs/
+bin/
+obj/
+
+# Test output
+TestResults/
+
+# Reports
+Reports/
+
+# Logs
+*.log

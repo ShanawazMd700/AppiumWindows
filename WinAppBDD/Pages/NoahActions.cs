@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;
 using System.Linq;
@@ -56,7 +56,18 @@ namespace WinAppBDD.Pages
 
         public void ClickOKButton()
         {
-            Click(OKButton);
+            try
+            {
+                // Primary locator by AccessibilityId
+                Click(OKButton);
+            }
+            catch (NoSuchElementException)
+            {
+                // Fallback to Name "OK"
+                var fallback = MobileBy.Name("OK");
+                Console.WriteLine("Primary OK button not found. Trying fallback locator.");
+                Click(fallback);
+            }
         }
 
 

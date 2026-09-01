@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace WinAppBDD.Utilities
 {
     public static class ReportRunManager
@@ -24,9 +25,11 @@ namespace WinAppBDD.Utilities
             }
         }
 
-        // Reports will be created under the test execution directory
-        // Example:
-        // bin\Debug\net9.0\Reports\2026-08-31_17-30-15
+
+        // ============================================================
+        // Reports
+        // ============================================================
+
         public static string ReportsDirectory
         {
             get
@@ -38,6 +41,11 @@ namespace WinAppBDD.Utilities
             }
         }
 
+
+        // ============================================================
+        // Extent
+        // ============================================================
+
         public static string ExtentDirectory
         {
             get
@@ -47,6 +55,7 @@ namespace WinAppBDD.Utilities
                     "Extent");
             }
         }
+
 
         public static string ExtentReportPath
         {
@@ -58,6 +67,33 @@ namespace WinAppBDD.Utilities
             }
         }
 
+
+        // ============================================================
+        // Allure
+        // ============================================================
+
+        // IMPORTANT:
+        // Allure.Reqnroll writes the raw result files here.
+        //
+        // Example:
+        // bin\Release\net9.0\allure-results
+        //
+        public static string AllureResultsDirectory
+        {
+            get
+            {
+                return Path.Combine(
+                    AppContext.BaseDirectory,
+                    "allure-results");
+            }
+        }
+
+
+        // Final generated Allure HTML report.
+        //
+        // Example:
+        // Reports\2026-09-01_11-10-09\Allure
+        //
         public static string AllureDirectory
         {
             get
@@ -68,11 +104,21 @@ namespace WinAppBDD.Utilities
             }
         }
 
+
+        // ============================================================
+        // Initialize
+        // ============================================================
+
         public static void Initialize()
         {
             Directory.CreateDirectory(ReportsDirectory);
+
             Directory.CreateDirectory(ExtentDirectory);
+
             Directory.CreateDirectory(AllureDirectory);
+
+            Directory.CreateDirectory(AllureResultsDirectory);
         }
     }
 }
+

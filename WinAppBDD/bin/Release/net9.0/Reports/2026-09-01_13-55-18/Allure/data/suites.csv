@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","102233","Lauching FSW","","2026-09-01","broken","2026-09-01","","","",""
-"","103572","Opening the NOAH and drwaing the audiogram","","2026-09-01","broken","2026-09-01","","","",""
-"","19282","Launching NOAH","","2026-09-01","passed","2026-09-01","","","",""
-"","24334","Launching FDTS","","2026-09-01","passed","2026-09-01","","","",""
-"","81289","Changing the target rule in FSW","","2026-09-01","broken","2026-09-01","","","",""
